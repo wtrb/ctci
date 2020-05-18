@@ -1,30 +1,18 @@
 package trees
 
-import "fmt"
-
-type Node interface {
-	Insert(data int)
-	Search(data int) bool
-	PrintInOrder()
-}
-
 type node struct {
 	data  int
 	left  *node
 	right *node
 }
 
-func New() Node {
-	return &node{}
-}
-
-func (n *node) Insert(data int) {
+func (n *node) insert(data int) {
 	if data <= n.data {
 		if n.left == nil {
 			n.left = &node{data: data, left: nil, right: nil}
 
 		} else {
-			n.left.Insert(data)
+			n.left.insert(data)
 		}
 
 	} else {
@@ -32,12 +20,12 @@ func (n *node) Insert(data int) {
 			n.right = &node{data: data, left: nil, right: nil}
 
 		} else {
-			n.right.Insert(data)
+			n.right.insert(data)
 		}
 	}
 }
 
-func (n *node) Search(data int) bool {
+func (n *node) contain(data int) bool {
 	if data == n.data {
 		return true
 
@@ -46,7 +34,7 @@ func (n *node) Search(data int) bool {
 			return false
 
 		} else {
-			return n.left.Search(data)
+			return n.left.contain(data)
 		}
 
 	} else {
@@ -54,17 +42,17 @@ func (n *node) Search(data int) bool {
 			return false
 
 		} else {
-			return n.right.Search(data)
+			return n.right.contain(data)
 		}
 	}
 }
 
-func (n *node) PrintInOrder() {
-	if n.left != nil {
-		n.left.PrintInOrder()
-	}
-	fmt.Println(n.data)
-	if n.right != nil {
-		n.right.PrintInOrder()
-	}
-}
+// func (n *Node) PrintInOrder() {
+// 	if n.left != nil {
+// 		n.left.PrintInOrder()
+// 	}
+// 	fmt.Println(n.data)
+// 	if n.right != nil {
+// 		n.right.PrintInOrder()
+// 	}
+// }
