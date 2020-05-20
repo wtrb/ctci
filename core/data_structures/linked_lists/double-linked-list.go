@@ -1,4 +1,4 @@
-package linkedlist
+package linkedlists
 
 type DoubleLinkedList struct {
 	Head *dnode

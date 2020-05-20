@@ -1,10 +1,10 @@
 package trees
 
-func CheckBST(tree Tree) bool {
-	return checkBST(tree.root, 1>>32, 1<<32)
+func IsBST(tree Tree) bool {
+	return isBST(tree.root, 1>>32, 1<<32)
 }
 
-func checkBST(node *node, min, max int) bool {
+func isBST(node *node, min, max int) bool {
 	if node == nil {
 		return true
 	}
@@ -13,5 +13,5 @@ func checkBST(node *node, min, max int) bool {
 		return false
 	}
 
-	return checkBST(node.left, min, node.data-1) && checkBST(node.right, node.data+1, max)
+	return isBST(node.left, min, node.data-1) && isBST(node.right, node.data+1, max)
 }
