@@ -1,9 +1,8 @@
 package trees
 
-import "math"
-
 func IsBST(tree Tree) bool {
-	return isBST(tree.root, math.MinInt64, math.MaxInt64)
+	// return isBST(tree.root, math.MinInt64, math.MaxInt64)
+	return isBST(tree.root, -1<<63, 1<<63-1)
 }
 
 func isBST(node *node, min, max int) bool {
