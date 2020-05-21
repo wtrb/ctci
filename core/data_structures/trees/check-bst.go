@@ -1,7 +1,9 @@
 package trees
 
+import "math"
+
 func IsBST(tree Tree) bool {
-	return isBST(tree.root, 1>>32, 1<<32)
+	return isBST(tree.root, math.MinInt64, math.MaxInt64)
 }
 
 func isBST(node *node, min, max int) bool {
