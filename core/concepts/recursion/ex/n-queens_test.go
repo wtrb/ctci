@@ -17,12 +17,21 @@ func Test_nQueens(t *testing.T) {
 		want1 bool
 	}{
 		{
-			name: "",
+			name: "3 queens",
+			args: args{
+				board:  [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},
+				queens: 3,
+			},
+			want:  [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}},
+			want1: false,
+		},
+		{
+			name: "4 queens",
 			args: args{
 				board:  [][]int{{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}},
 				queens: 4,
 			},
-			want:  [][]int{{0, 1, 0, 0}, {0, 0, 0, 3}, {1, 0, 0, 0}, {0, 0, 1, 0}},
+			want:  [][]int{{0, 1, 0, 0}, {0, 0, 0, 1}, {1, 0, 0, 0}, {0, 0, 1, 0}},
 			want1: true,
 		},
 	}
