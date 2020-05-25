@@ -5,6 +5,41 @@ import (
 	"testing"
 )
 
+func TestTree_Height(t *testing.T) {
+	bstTree := Tree{}
+	bstTree.Insert(10)
+	bstTree.Insert(5)
+	bstTree.Insert(25)
+	bstTree.Insert(1)
+	bstTree.Insert(0)
+	bstTree.Insert(19)
+	bstTree.Insert(27)
+
+	tests := []struct {
+		name string
+		tr   *Tree
+		want int
+	}{
+		{
+			name: "zero",
+			tr:   &Tree{},
+			want: 0,
+		},
+		{
+			name: "",
+			tr:   &bstTree,
+			want: 4,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.tr.Height(); got != tt.want {
+				t.Errorf("Tree.Height() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestTree_TraverseInOrder(t *testing.T) {
 	bstTree := Tree{}
 	bstTree.Insert(10)

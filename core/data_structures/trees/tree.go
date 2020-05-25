@@ -21,6 +21,14 @@ func (t *Tree) Contain(data int) bool {
 	return t.root.contain(data)
 }
 
+func (t *Tree) Height() int {
+	if t.root == nil {
+		return 0
+	}
+
+	return t.root.height()
+}
+
 func (t *Tree) TraverseInOrder() []int {
 	if t.root == nil {
 		return []int{}

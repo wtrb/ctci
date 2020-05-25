@@ -1,7 +1,5 @@
 package trees
 
-import "fmt"
-
 type node struct {
 	data  int
 	left  *node
@@ -49,12 +47,31 @@ func (n *node) contain(data int) bool {
 	}
 }
 
-func (n *node) PrintInOrder() {
+func (n *node) height() int {
+	lHeight := 0
+	rHeight := 0
+
 	if n.left != nil {
-		n.left.PrintInOrder()
+		lHeight = n.left.height()
 	}
-	fmt.Println(n.data)
 	if n.right != nil {
-		n.right.PrintInOrder()
+		rHeight = n.right.height()
+	}
+
+	if lHeight > rHeight {
+		return lHeight + 1
+
+	} else {
+		return rHeight + 1
 	}
 }
+
+// func (n *node) PrintInOrder() {
+// 	if n.left != nil {
+// 		n.left.PrintInOrder()
+// 	}
+// 	fmt.Println(n.data)
+// 	if n.right != nil {
+// 		n.right.PrintInOrder()
+// 	}
+// }
