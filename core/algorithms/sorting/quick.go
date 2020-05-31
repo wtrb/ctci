@@ -4,7 +4,9 @@ func QuickSort(arr []int) {
 	quickSort(arr, 0, len(arr)-1)
 }
 
-// Time complexity: average - O(NlogN), worst - O(N^2)
+// Time complexity:
+//		average - O(NlogN)
+//		worst - O(N^2)
 // Space complexity: O(1)
 func quickSort(arr []int, left, right int) {
 	if left >= right {
