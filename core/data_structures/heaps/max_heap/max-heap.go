@@ -37,19 +37,19 @@ func (h *MaxHeap) Poll() (int, error) {
 func (h *MaxHeap) heapifyDown() {
 	index := 0
 	for h.hasLeftChild(index) {
-		smallerChildIdx := h.getLeftChildIndex(index)
+		greaterChildIdx := h.getLeftChildIndex(index)
 		if h.hasRightChild(index) && h.rightChild(index) > h.leftChild(index) {
-			smallerChildIdx = h.getRightChildIndex(index)
+			greaterChildIdx = h.getRightChildIndex(index)
 		}
 
-		if h.items[index] > h.items[smallerChildIdx] {
+		if h.items[index] > h.items[greaterChildIdx] {
 			break
 
 		} else {
-			h.swap(index, smallerChildIdx)
+			h.swap(index, greaterChildIdx)
 		}
 
-		index = smallerChildIdx
+		index = greaterChildIdx
 	}
 }
 

@@ -6,12 +6,12 @@ func HeapSort(arr []int) {
 	buildMaxHeap(arr)
 
 	for i := len(arr) - 1; i >= 1; i-- {
-		arr[0], arr[i] = arr[i], arr[0]
+		arr[i], arr[0] = arr[0], arr[i]
 		heapify(arr[:i], 0)
 	}
 }
 
-// Time complexity: O(N)
+// Time complexity: O(N/2*logN)
 func buildMaxHeap(arr []int) {
 	for i := len(arr) / 2; i >= 0; i-- {
 		heapify(arr, i)
