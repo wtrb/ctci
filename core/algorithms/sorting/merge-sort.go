@@ -1,12 +1,12 @@
 package sort
 
+// Time complexity: O(NlogN)
+// Space complexity: O(N)
 func MergeSort(arr []int) {
 	temp := make([]int, len(arr))
 	mergeSort(arr, temp, 0, len(arr)-1)
 }
 
-// Time complexity: O(NlogN)
-// Space complexity: O(N)
 func mergeSort(arr, temp []int, leftStart, rightEnd int) {
 	if leftStart >= rightEnd {
 		return

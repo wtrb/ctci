@@ -1,18 +1,18 @@
-package heap
+package maxheap
 
 import (
 	"errors"
 )
 
-type MinHeap struct {
+type MaxHeap struct {
 	items []int
 }
 
-func NewMinHeap() *MinHeap {
-	return &MinHeap{}
+func New() *MaxHeap {
+	return &MaxHeap{}
 }
 
-func (h *MinHeap) Peek() (int, error) {
+func (h *MaxHeap) Peek() (int, error) {
 	if h.Size() == 0 {
 		return 0, errors.New("empty heap")
 	}
@@ -20,7 +20,7 @@ func (h *MinHeap) Peek() (int, error) {
 	return h.items[0], nil
 }
 
-func (h *MinHeap) Poll() (int, error) {
+func (h *MaxHeap) Poll() (int, error) {
 	if h.Size() == 0 {
 		return 0, errors.New("empty heap")
 	}
@@ -34,15 +34,15 @@ func (h *MinHeap) Poll() (int, error) {
 	return item, nil
 }
 
-func (h *MinHeap) heapifyDown() {
+func (h *MaxHeap) heapifyDown() {
 	index := 0
 	for h.hasLeftChild(index) {
 		smallerChildIdx := h.getLeftChildIndex(index)
-		if h.hasRightChild(index) && h.rightChild(index) < h.leftChild(index) {
+		if h.hasRightChild(index) && h.rightChild(index) > h.leftChild(index) {
 			smallerChildIdx = h.getRightChildIndex(index)
 		}
 
-		if h.items[index] < h.items[smallerChildIdx] {
+		if h.items[index] > h.items[smallerChildIdx] {
 			break
 
 		} else {
@@ -53,66 +53,66 @@ func (h *MinHeap) heapifyDown() {
 	}
 }
 
-func (h *MinHeap) Add(item int) {
+func (h *MaxHeap) Add(item int) {
 	h.items = append(h.items, item)
 	h.heapifyUp()
 }
 
-func (h *MinHeap) heapifyUp() {
+func (h *MaxHeap) heapifyUp() {
 	index := h.Size() - 1
-	for h.hasParent(index) && h.parent(index) > h.items[index] {
+	for h.hasParent(index) && h.parent(index) < h.items[index] {
 		h.swap(h.getParentIndex(index), index)
 		index = h.getParentIndex(index)
 	}
 }
 
-func (h *MinHeap) Size() int {
+func (h *MaxHeap) Size() int {
 	return len(h.items)
 }
 
-func (h *MinHeap) ToSlice() []int {
+func (h *MaxHeap) ToSlice() []int {
 	result := make([]int, h.Size())
 	copy(result, h.items)
 	return result
 }
 
-func (h *MinHeap) getLeftChildIndex(parentIndex int) int {
+func (h *MaxHeap) getLeftChildIndex(parentIndex int) int {
 	return 2*parentIndex + 1
 }
 
-func (h *MinHeap) getRightChildIndex(parentIndex int) int {
+func (h *MaxHeap) getRightChildIndex(parentIndex int) int {
 	return 2*parentIndex + 2
 }
 
-func (h *MinHeap) getParentIndex(childIndex int) int {
+func (h *MaxHeap) getParentIndex(childIndex int) int {
 	return (childIndex - 1) / 2
 }
 
-func (h *MinHeap) hasLeftChild(index int) bool {
+func (h *MaxHeap) hasLeftChild(index int) bool {
 	return h.getLeftChildIndex(index) < h.Size()
 }
 
-func (h *MinHeap) hasRightChild(index int) bool {
+func (h *MaxHeap) hasRightChild(index int) bool {
 	return h.getRightChildIndex(index) < h.Size()
 }
 
-func (h *MinHeap) hasParent(index int) bool {
+func (h *MaxHeap) hasParent(index int) bool {
 	return h.getParentIndex(index) >= 0
 }
 
-func (h *MinHeap) leftChild(index int) int {
+func (h *MaxHeap) leftChild(index int) int {
 	return h.items[h.getLeftChildIndex(index)]
 }
 
-func (h *MinHeap) rightChild(index int) int {
+func (h *MaxHeap) rightChild(index int) int {
 	return h.items[h.getRightChildIndex(index)]
 }
 
-func (h *MinHeap) parent(index int) int {
+func (h *MaxHeap) parent(index int) int {
 	return h.items[h.getParentIndex(index)]
 }
 
-func (h *MinHeap) swap(idxOne, idxTwo int) {
+func (h *MaxHeap) swap(idxOne, idxTwo int) {
 	h.items[idxOne], h.items[idxTwo] = h.items[idxTwo], h.items[idxOne]
 }
 
