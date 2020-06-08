@@ -1,45 +1,45 @@
 package recursion
 
-func nQueens(board *[][]int, queens int) ([][]int, bool) {
+func nQueens(board [][]int, queens int) bool {
 	if queens == 0 {
-		return *board, true
+		return true
 	}
 
-	for i := 0; i < len(*board); i++ {
-		for j := 0; j < len((*board)[i]); j++ {
+	for i := 0; i < len(board); i++ {
+		for j := 0; j < len(board[i]); j++ {
 			if ok := isAttached(board, i, j); ok {
 				continue
 
 			} else {
-				(*board)[i][j] = 1
+				board[i][j] = 1
 			}
 
-			if _, ok := nQueens(board, queens-1); ok {
-				return *board, true
+			if ok := nQueens(board, queens-1); ok {
+				return true
 
 			} else {
-				(*board)[i][j] = 0
+				board[i][j] = 0
 			}
 		}
 	}
 
-	return *board, false
+	return false
 }
 
-func isAttached(board *[][]int, x, y int) bool {
-	for j := 0; j < len((*board)[x]); j++ {
-		if (*board)[x][j] == 1 {
+func isAttached(board [][]int, x, y int) bool {
+	for j := 0; j < len(board[x]); j++ {
+		if board[x][j] == 1 {
 			return true
 		}
 	}
-	for i := 0; i < len(*board); i++ {
-		if (*board)[i][y] == 1 {
+	for i := 0; i < len(board); i++ {
+		if board[i][y] == 1 {
 			return true
 		}
 	}
-	for i := 0; i < len(*board); i++ {
-		for j := 0; j < len((*board)[i]); j++ {
-			if (i+j == x+y || i-j == x-y) && (*board)[i][j] == 1 {
+	for i := 0; i < len(board); i++ {
+		for j := 0; j < len(board[i]); j++ {
+			if (i+j == x+y || i-j == x-y) && board[i][j] == 1 {
 				return true
 			}
 		}

@@ -8,7 +8,7 @@ func maxSubarraySum(arr []int) int {
 	curSum := arr[0]
 
 	for i := 1; i < len(arr); i++ {
-		// curSum = max(arr[i]+curSum, arr[i])
+		// curSum = maxInts(arr[i]+curSum, arr[i])
 		curSum = maxInts(curSum, 0) + arr[i]
 		maxSum = maxInts(curSum, maxSum)
 	}

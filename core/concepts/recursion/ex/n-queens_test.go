@@ -37,12 +37,12 @@ func Test_nQueens(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, got1 := nQueens(&tt.args.board, tt.args.queens)
-			if !reflect.DeepEqual(got, tt.want) {
+			got := nQueens(tt.args.board, tt.args.queens)
+			if !reflect.DeepEqual(tt.args.board, tt.want) {
 				t.Errorf("nQueens() got = %v, want %v", got, tt.want)
 			}
-			if got1 != tt.want1 {
-				t.Errorf("nQueens() got1 = %v, want %v", got1, tt.want1)
+			if got != tt.want1 {
+				t.Errorf("nQueens() got1 = %v, want %v", got, tt.want1)
 			}
 		})
 	}
