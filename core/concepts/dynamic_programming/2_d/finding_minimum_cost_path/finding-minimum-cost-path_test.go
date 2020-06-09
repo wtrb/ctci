@@ -1,4 +1,4 @@
-package costpath
+package path
 
 import "testing"
 

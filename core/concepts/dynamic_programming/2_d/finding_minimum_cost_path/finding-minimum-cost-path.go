@@ -1,4 +1,4 @@
-package costpath
+package path
 
 // Time complexity: O(N*M)
 // Space complexity: O(N*M)
