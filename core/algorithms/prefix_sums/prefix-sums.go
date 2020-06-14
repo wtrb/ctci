@@ -5,8 +5,8 @@ package subarray
 func prefixSums(arr []int) []int {
 	sums := make([]int, len(arr)+1)
 
-	for i, a := range arr {
-		sums[i+1] = sums[i] + a
+	for i := 0; i < len(arr); i++ {
+		sums[i+1] = arr[i] + sums[i]
 	}
 
 	return sums
@@ -15,12 +15,12 @@ func prefixSums(arr []int) []int {
 // Time complexity: O(N)
 // Space complexity: O(N)
 func sumOfSubarray(arr []int, start, end int) int {
-	sums := make([]int, len(arr)+1)
-	for i, a := range arr {
-		sums[i+1] = sums[i] + a
+	prefixSums := make([]int, len(arr)+1)
+	for i := 0; i < len(arr); i++ {
+		prefixSums[i+1] = arr[i] + prefixSums[i]
 	}
 
-	return sums[end+1] - sums[start]
+	return prefixSums[end+1] - prefixSums[start]
 }
 
-// tags: prefix sums, sum of slice, sum of subarray
+// tags: prefix sums, sum of slice, sum of subarray, dp, dynamic programming
