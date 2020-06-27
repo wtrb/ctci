@@ -1,5 +1,7 @@
 package submatrix
 
+// Time complexity: O(m*n)
+// Space complexity: O(m*n)
 func prefixSums(mat [][]int) [][]int {
 	rows := len(mat)
 	cols := len(mat[0])
@@ -17,6 +19,8 @@ func prefixSums(mat [][]int) [][]int {
 	return sums
 }
 
+// Time complexity: O(m*n)
+// Space complexity: O(m*n)
 func matrixBlockSum(mat [][]int, K int) [][]int {
 	rows := len(mat)
 	cols := len(mat[0])
